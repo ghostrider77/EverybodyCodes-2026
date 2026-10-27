@@ -1,4 +1,4 @@
-object Quest01A {
+object Quest01A:
   private def supplementCones(nrCones: Int): Int =
     val k: Int = math.ceil(math.sqrt(nrCones)).toInt
     k * k - nrCones
@@ -11,4 +11,5 @@ object Quest01A {
     val pineCones: List[Int] = line.split(",").map(_.toInt).toList
     val result: Int = getSumOfRequiredCones(pineCones)
     println(result)
-}
+
+end Quest01A
