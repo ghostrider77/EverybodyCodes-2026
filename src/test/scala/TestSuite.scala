@@ -52,10 +52,24 @@ class TestSuite extends AnyFreeSpec, Matchers {
         val lines: Iterator[String] = Iterator(
           "2<5 3>1 1>2 1<5 4<1 3>2 4<2 3>5 4<5",
           "2>1 3>2 1<5 4>5 2<5 3>1 4>3 2<4 5<3",
-          "5>1 5>2 4>1 3>2 3<4 1>2 3>5 1<3 4>5",
+          "5>1 5>2 4>1 3>2 3<4 1>2 3>5 1<3 4>5"
         )
         val alloyPairs: List[OrderedPairs] = lines.map(parseOrderedPairs).toList
         getAlloyGroupChecksum(alloyPairs) shouldEqual 122157L
+      }
+    }
+
+    "Part 3" - {
+      import Quest02C.{Graph, getAlloyGroupChecksum, readGraph}
+
+      "should calculate the sum of the ordered alloys given an ordering graph" in {
+        val lines: Iterator[String] = Iterator(
+          "3>1 1>2 1<5 4<2 3>5",
+          "2>1 2<5 3>1 4>3 2<4 5<3",
+          "5>1 3<4 1>2 3>5"
+        )
+        val graphs: List[Graph] = lines.map(readGraph).toList
+        getAlloyGroupChecksum(graphs) shouldEqual 122157L
       }
     }
   }
