@@ -85,5 +85,24 @@ class TestSuite extends AnyFreeSpec, Matchers {
         calcCandidateFinalScore(votes) shouldEqual 1478
       }
     }
+
+    "Part 2" - {
+      import Quest03B.{Vote, calcCandidateFinalScore, parseInput}
+
+      "should calculate the candidate's final score in decimal number when the parts can have different lengths" in {
+        val lines: List[String] = List(
+          "ISO-3210 7654",
+          "ISO-8742 2468",
+          "ISO-1 1111",
+          "ISO-13 777",
+          "ISO-34 140856",
+          "ISO-789 2465112",
+          "ISO-2341 945",
+        )
+
+        val votes: List[Vote] = parseInput(lines)
+        calcCandidateFinalScore(votes) shouldEqual 1161463L
+      }
+    }
   }
 }
