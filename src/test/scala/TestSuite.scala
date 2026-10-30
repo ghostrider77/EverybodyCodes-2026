@@ -97,7 +97,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
           "ISO-13 777",
           "ISO-34 140856",
           "ISO-789 2465112",
-          "ISO-2341 945",
+          "ISO-2341 945"
         )
 
         val votes: List[Vote] = parseInput(lines)
@@ -116,11 +116,40 @@ class TestSuite extends AnyFreeSpec, Matchers {
           "ISO2-5887 5923",
           "ISO2-76988 123749",
           "ISO2-435657 929977",
-          "ISO2-3949 870737",
+          "ISO2-3949 870737"
         )
 
         val votes: List[Vote] = parseInput(lines)
         calcCandidateFinalScore(votes) shouldEqual 50987L
+      }
+    }
+  }
+
+  "Quest 04" - {
+    "Part 1" - {
+      import Quest04A.{QuestResult, calcResultChecksum, parseInput}
+
+      "should calculate the checksum of the participant's quest results" in {
+        val lines: List[String] = List(
+          "id=1 quest=1 part=1 time=187",
+          "id=3 quest=1 part=1 time=413",
+          "id=5 quest=1 part=3 time=744",
+          "id=2 quest=1 part=3 time=745",
+          "id=4 quest=1 part=2 time=558",
+          "id=1 quest=1 part=2 time=299",
+          "id=1 quest=1 part=3 time=362",
+          "id=4 quest=1 part=3 time=1268",
+          "id=4 quest=1 part=1 time=457",
+          "id=5 quest=1 part=1 time=257",
+          "id=2 quest=1 part=1 time=192",
+          "id=3 quest=1 part=3 time=1168",
+          "id=5 quest=1 part=2 time=346",
+          "id=3 quest=1 part=2 time=455",
+          "id=2 quest=1 part=2 time=562"
+        )
+
+        val questResults: List[QuestResult] = parseInput(lines)
+        calcResultChecksum(questResults) shouldEqual 27598L
       }
     }
   }
