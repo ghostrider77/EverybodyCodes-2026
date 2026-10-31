@@ -36,7 +36,7 @@ object Quest05A:
     val Board(nrRows, nrCols, darkCells) = board
     getNeighbors(cell, nrRows, nrCols).count(coord => land.contains(coord) || darkCells.contains(coord)) >= 5
 
-  def convertCellToLand(board: Board): Int =
+  def convertCellsToLand(board: Board): Int =
     val Board(nrRows, nrCols, darkCells) = board
     @tailrec
     def loop(land: Set[Cell]): Int =
@@ -46,13 +46,12 @@ object Quest05A:
       else loop(land ++ convertibles)
 
     val startLand = Cell(nrRows / 2, nrCols / 2)
-    val allCells: Set[Cell] = (0 until nrRows).flatMap(x => (0 until nrCols).map(y => Cell(x, y))).toSet
     loop(Set(startLand))
 
   def main(args: Array[String]): Unit =
     val lines: Iterator[String] = scala.io.Source.stdin.getLines()
     val board: Board = parseInput(lines.toList)
-    val result: Int = convertCellToLand(board)
+    val result: Int = convertCellsToLand(board)
     println(result)
 
 end Quest05A

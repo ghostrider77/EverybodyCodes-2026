@@ -185,7 +185,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
 
   "Quest 05" - {
     "Part 1" - {
-      import Quest05A.{Board, parseInput, convertCellToLand}
+      import Quest05A.{Board, parseInput, convertCellsToLand}
 
       "should calculate the number of land cells" in {
         val lines: List[String] = List(
@@ -203,7 +203,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
         )
 
         val board: Board = parseInput(lines)
-        convertCellToLand(board) shouldEqual 137
+        convertCellsToLand(board) shouldEqual 137
       }
     }
   }
