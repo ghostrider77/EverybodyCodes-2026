@@ -184,26 +184,35 @@ class TestSuite extends AnyFreeSpec, Matchers {
   }
 
   "Quest 05" - {
+    val lines: List[String] = List(
+      "010100100100001101000",
+      "111101001000001110000",
+      "101111011000101010011",
+      "001000101010000100000",
+      "000110100110011001100",
+      "000001110111111000000",
+      "101100010101011110000",
+      "001101100000001010011",
+      "001001001111010001001",
+      "100011011110011010101",
+      "001100101110010010000"
+    )
+
     "Part 1" - {
       import Quest05A.{Board, parseInput, convertCellsToLand}
 
       "should calculate the number of land cells" in {
-        val lines: List[String] = List(
-          "010100100100001101000",
-          "111101001000001110000",
-          "101111011000101010011",
-          "001000101010000100000",
-          "000110100110011001100",
-          "000001110111111000000",
-          "101100010101011110000",
-          "001101100000001010011",
-          "001001001111010001001",
-          "100011011110011010101",
-          "001100101110010010000"
-        )
-
         val board: Board = parseInput(lines)
         convertCellsToLand(board) shouldEqual 137
+      }
+    }
+
+    "Part 2" - {
+      import Quest05B.{Board, parseInput, identifyLandWithSand}
+
+      "should calculate the number of land cells" in {
+        val board: Board = parseInput(lines)
+        identifyLandWithSand(board) shouldEqual 69
       }
     }
   }
