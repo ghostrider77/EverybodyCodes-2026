@@ -210,7 +210,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
     "Part 2" - {
       import Quest05B.{Board, parseInput, identifyLandWithSand}
 
-      "should calculate the number of land cells" in {
+      "should calculate the number of sand cells" in {
         val board: Board = parseInput(lines)
         identifyLandWithSand(board) shouldEqual 69
       }

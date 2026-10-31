@@ -76,7 +76,7 @@ object Quest05B:
 
   def identifyLandWithSand(board: Board): Int =
     val land: Set[Cell] = convertCellsToLand(board)
-    val (finalLand: Set[Cell], sand: Set[Cell]) = convertCellsToSand(board, land)
+    val (_: Set[Cell], sand: Set[Cell]) = convertCellsToSand(board, land)
     sand.size
 
   def main(args: Array[String]): Unit =
