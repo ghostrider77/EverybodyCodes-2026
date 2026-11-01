@@ -181,6 +181,60 @@ class TestSuite extends AnyFreeSpec, Matchers {
         calcResultChecksum(questResults) shouldEqual 6470L
       }
     }
+
+    "Part 3" - {
+      import Quest04C.{QuestPartResult, calcResultChecksum, parseInput}
+
+      "Test case 1: should calculate the checksum of the participant's results considering potential ties" in {
+        val lines: List[String] = List(
+          "id=2 quest=1 part=1 time=100",
+          "id=4 quest=2 part=1 time=150",
+          "id=1 quest=2 part=1 time=140",
+          "id=1 quest=1 part=2 time=180",
+          "id=2 quest=2 part=1 time=130",
+          "id=4 quest=1 part=1 time=110",
+          "id=1 quest=2 part=2 time=210",
+          "id=2 quest=2 part=2 time=240",
+          "id=1 quest=2 part=3 time=330",
+          "id=2 quest=1 part=2 time=170",
+          "id=3 quest=1 part=1 time=90",
+          "id=4 quest=1 part=2 time=175",
+          "id=3 quest=2 part=1 time=120",
+          "id=1 quest=1 part=1 time=120",
+          "id=3 quest=2 part=2 time=220",
+          "id=2 quest=2 part=3 time=350",
+          "id=3 quest=1 part=2 time=160"
+        )
+
+        val questPartResults: List[QuestPartResult] = parseInput(lines)
+        calcResultChecksum(questPartResults) shouldEqual 2998L
+      }
+
+      "Test case 2: should calculate the checksum of the participant's results considering potential ties" in {
+        val lines: List[String] = List(
+          "id=2 quest=1 part=1 time=90",
+          "id=4 quest=2 part=1 time=150",
+          "id=1 quest=2 part=1 time=130",
+          "id=1 quest=1 part=2 time=180",
+          "id=2 quest=2 part=1 time=130",
+          "id=4 quest=1 part=1 time=110",
+          "id=1 quest=2 part=2 time=210",
+          "id=2 quest=2 part=2 time=220",
+          "id=1 quest=2 part=3 time=330",
+          "id=2 quest=1 part=2 time=170",
+          "id=3 quest=1 part=1 time=90",
+          "id=4 quest=1 part=2 time=170",
+          "id=3 quest=2 part=1 time=120",
+          "id=1 quest=1 part=1 time=120",
+          "id=3 quest=2 part=2 time=220",
+          "id=2 quest=2 part=3 time=350",
+          "id=3 quest=1 part=2 time=170"
+        )
+
+        val questPartResults: List[QuestPartResult] = parseInput(lines)
+        calcResultChecksum(questPartResults) shouldEqual 3004L
+      }
+    }
   }
 
   "Quest 05" - {
