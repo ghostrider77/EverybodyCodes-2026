@@ -23,7 +23,7 @@ object Quest06A:
   def getEveryIngredientsNeeded(graph: DirectedGraph): Int =
     val startNode: String = "NULL"
     val ingredients: Set[String] = graph.reachableFrom(startNode)
-    ingredients.count(_ != startNode)
+    ingredients.size
 
   def main(args: Array[String]): Unit =
     val lines: Iterator[String] = scala.io.Source.stdin.getLines()
