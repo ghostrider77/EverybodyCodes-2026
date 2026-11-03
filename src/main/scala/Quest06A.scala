@@ -14,7 +14,7 @@ object Quest06A:
       distances.filter { case (_, dist) => dist > 0 }.keysIterator.toSet
 
   def readGraph(lines: List[String]): DirectedGraph =
-    def parse(line: String) = line.split(":").toList match
+    def parse(line: String): (String, List[String]) = line.split(":").toList match
       case List(node, neighbors) => (node, neighbors.split(",").toList)
       case _ => throw Exception(s"Malformed input $line.")
 
