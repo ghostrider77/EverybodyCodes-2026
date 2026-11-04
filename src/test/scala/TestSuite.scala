@@ -310,4 +310,25 @@ class TestSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+
+  "Quest 07" - {
+    "Part 1" - {
+      import Quest07A.{CloudSystem, readInput, sendImpulses}
+
+      "should calculate the total impulses the clouds received" in {
+        val lines: List[String] = List(
+          "id=1, energy=5, connections=2,5,7",
+          "id=2, energy=9, connections=6,7",
+          "id=3, energy=3, connections=4",
+          "id=4, energy=8, connections=3",
+          "id=5, energy=1, connections=6,7",
+          "id=6, energy=7, connections=1,7",
+          "id=7, energy=6, connections=5"
+        )
+        val clouds: CloudSystem = readInput(lines)
+        val initialImpulse: Int = 5
+        sendImpulses(clouds, initialImpulse) shouldEqual 102
+      }
+    }
+  }
 }
