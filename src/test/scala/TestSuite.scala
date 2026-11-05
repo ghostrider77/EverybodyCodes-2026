@@ -309,6 +309,26 @@ class TestSuite extends AnyFreeSpec, Matchers {
         getEveryIngredientsNeeded(graph) shouldEqual 6
       }
     }
+
+    "Part 3" - {
+      import Quest06C.{DirectedGraph, Edge, getIngredientsUserAtLeast2Nulls, readEdges}
+
+      val lines: List[String] = List(
+        "MEAL:BRDS,CAKE,DOUG",
+        "BRDS:DOUG,FLWR",
+        "CAKE:DOUG,FLWR,NULLv2,NULLv3",
+        "DOUG:FLWR,YSTS,SLTT,NULLv1",
+        "FLWR:BRDS,DOUG",
+        "YSTS:SPCS",
+        "SOUP:BRDS,CAKE,DOUG,FLWR"
+      )
+
+      "should calculate the number of ingredients that produces NULL" in {
+        val edges: List[Edge] = readEdges(lines)
+        val graph = DirectedGraph(edges)
+        getIngredientsUserAtLeast2Nulls(graph) shouldEqual 3
+      }
+    }
   }
 
   "Quest 07" - {
