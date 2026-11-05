@@ -1,6 +1,6 @@
 object Quest03A:
   case class Vote(standard: Long, vote: Long):
-    def toLong: Long =
+    def toLong: Long = {
       val weights: List[Long] =
         standard
           .toString
@@ -10,6 +10,7 @@ object Quest03A:
           .toList
           .reverse
       vote.toString.map(_.asDigit).zip(weights).foldLeft(0L) { case (acc, (d, w)) => acc + d * w }
+    }
 
   object Vote:
     def apply(s: String): Vote = s match
@@ -22,10 +23,11 @@ object Quest03A:
   def calcCandidateFinalScore(votes: List[Vote]): Long =
     votes.map(_.toLong).sum
 
-  def main(args: Array[String]): Unit =
+  def main(args: Array[String]): Unit = {
     val lines: Iterator[String] = scala.io.Source.stdin.getLines()
     val votes: List[Vote] = parseInput(lines.toList)
     val result: Long = calcCandidateFinalScore(votes)
     println(result)
+  }
 
 end Quest03A

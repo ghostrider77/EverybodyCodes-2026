@@ -28,18 +28,19 @@ object Quest04C:
       afterPart3: Int
   )
 
-  def parseInput(lines: List[String]): List[QuestPartResult] =
+  def parseInput(lines: List[String]): List[QuestPartResult] = {
     def parse(line: String): QuestPartResult = line match
       case s"id=$id quest=$quest part=$part time=$time" =>
         QuestPartResult(id.toInt, quest.toInt, Part(part), time.toInt)
       case _ => throw Exception(s"Malformed input $line.")
 
     lines.map(parse)
+  }
 
   private def addMaps[K](m1: Map[K, Int], m2: Map[K, Int]): Map[K, Int] =
     m2.foldLeft(m1) { case (acc, (key, value)) => acc.updated(key, acc.getOrElse(key, 0) + value) }
 
-  private def calcQuestCompletionTimes(questResults: List[QuestPartResult]): Map[Int, List[QuestResult]] =
+  private def calcQuestCompletionTimes(questResults: List[QuestPartResult]): Map[Int, List[QuestResult]] = {
     def getCumulativeTimes(xs: List[QuestPartResult]): QuestResult =
       xs.sortBy(_.part).map { case QuestPartResult(participantId, _, _, time) => (participantId, time) } match
         case List((participantId, t1), (_, t2), (_, t3)) =>
@@ -53,8 +54,9 @@ object Quest04C:
       .view
       .mapValues(_.groupBy(_.participantId).map((_, xs) => getCumulativeTimes(xs)).toList)
       .toMap
+  }
 
-  private def scoreQuestPart(questResults: List[QuestResult], part: Part): Map[Int, Int] =
+  private def scoreQuestPart(questResults: List[QuestResult], part: Part): Map[Int, Int] = {
     @tailrec
     def loop(acc: Map[Int, Int], rs: List[(Int, Int)], prevTime: Int, previousScore: Int, diff: Int): Map[Int, Int] =
       rs match
@@ -72,11 +74,12 @@ object Quest04C:
       case Part3 =>
         questResults.filter(_.isPart3Completed).sortBy(_.afterPart3).map(r => (r.participantId, r.afterPart3))
     loop(Map(), sortedResults, Int.MinValue, Part.highestScore(part), 0)
+  }
 
   private def scoreQuest(questResults: List[QuestResult]): Map[Int, Int] =
     Part.values.foldLeft(Map.empty[Int, Int])((acc, part) => addMaps(acc, scoreQuestPart(questResults, part)))
 
-  private def calcChecksumWithTies(scores: List[Int]): Long =
+  private def calcChecksumWithTies(scores: List[Int]): Long = {
     val sortedScores: List[Int] = scores.sorted(using Ordering[Int].reverse)
 
     @tailrec
@@ -89,19 +92,22 @@ object Quest04C:
           loop(acc + nextMultiplier * score, rest, score, nextMultiplier, 1)
 
     loop(0L, sortedScores, Int.MinValue, 1, 0)
+  }
 
-  def calcResultChecksum(questPartResults: List[QuestPartResult]): Long =
+  def calcResultChecksum(questPartResults: List[QuestPartResult]): Long = {
     val participantScores: Map[Int, Int] = questPartResults.map(_.participantId).map(id => (id, 0)).toMap
     val questCompletionTimes: Map[Int, List[QuestResult]] = calcQuestCompletionTimes(questPartResults)
     val scores: Map[Int, Int] =
       questCompletionTimes.values.foldLeft(participantScores)((acc, qrs) => addMaps(acc, scoreQuest(qrs)))
 
     calcChecksumWithTies(scores.values.toList)
+  }
 
-  def main(args: Array[String]): Unit =
+  def main(args: Array[String]): Unit = {
     val lines: Iterator[String] = scala.io.Source.stdin.getLines()
     val questPartResults: List[QuestPartResult] = parseInput(lines.toList)
     val result: Long = calcResultChecksum(questPartResults)
     println(result)
+  }
 
 end Quest04C
