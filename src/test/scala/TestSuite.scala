@@ -387,17 +387,27 @@ class TestSuite extends AnyFreeSpec, Matchers {
   }
 
   "Quest 09" - {
+    val lines: List[String] = List(
+      "id=1, growth=3, limit=10",
+      "id=2, growth=5, limit=20",
+      "id=3, growth=7, limit=30"
+    )
+
     "Part 1" - {
       import Quest09A.{Plant, readInput, calcTotalPlantGrowthTime}
 
       "should calculate the total time of plants overgrow their limits" in {
-        val lines: List[String] = List(
-          "id=1, growth=3, limit=10",
-          "id=2, growth=5, limit=20",
-          "id=3, growth=7, limit=30"
-        )
         val plants: List[Plant] = readInput(lines)
         calcTotalPlantGrowthTime(plants) shouldEqual 27
+      }
+    }
+
+    "Part 2" - {
+      import Quest09B.{Plant, readInput, calcTotalPlantGrowthTime}
+
+      "should calculate the total time when the number of leaves exceed their limits" in {
+        val plants: List[Plant] = readInput(lines)
+        calcTotalPlantGrowthTime(plants) shouldEqual 42
       }
     }
   }
