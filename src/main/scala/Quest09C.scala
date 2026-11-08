@@ -13,7 +13,7 @@ object Quest09C:
   }
 
   private def checkWhenLimitIsReached(plant: Plant): Long = {
-    val Plant(_, growth: Long, limit: Long) = plant
+    val Plant(_, growth, limit) = plant
 
     def grow(branch: Branch, step: Long): List[Branch] =
       if branch.length + step < growth then List(branch.copy(length = branch.length + step))
@@ -35,7 +35,7 @@ object Quest09C:
       }
     }
 
-    loop(1, Map(Branch(1L, true) -> 1))
+    loop(1, Map(Branch(1L, true) -> 1L))
   }
 
   def calcTotalPlantGrowthTime(plants: List[Plant]): Long =
