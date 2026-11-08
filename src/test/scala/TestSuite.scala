@@ -410,5 +410,14 @@ class TestSuite extends AnyFreeSpec, Matchers {
         calcTotalPlantGrowthTime(plants) shouldEqual 42
       }
     }
+
+    "Part 3" - {
+      import Quest09C.{Plant, readInput, calcTotalPlantGrowthTime}
+
+      "should calculate the total time when the number of leaves exceed their limits" in {
+        val plants: List[Plant] = readInput(lines)
+        calcTotalPlantGrowthTime(plants) shouldEqual 42
+      }
+    }
   }
 }
