@@ -420,4 +420,16 @@ class TestSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+
+  "Quest 11" - {
+    "Part 1" - {
+      import Quest11A.{Graph, PortalRing, calcPortalResonance}
+
+      "should calculate the difference between the circular and shortcut distances" in {
+        val ring: PortalRing = PortalRing(10, List((5, 10), (2, 7)))
+        val graph = Graph(ring)
+        calcPortalResonance(graph) shouldEqual 60
+      }
+    }
+  }
 }
