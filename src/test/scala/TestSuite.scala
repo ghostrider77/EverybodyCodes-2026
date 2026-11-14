@@ -477,6 +477,16 @@ class TestSuite extends AnyFreeSpec, Matchers {
         simulate(caveWalls, nullGhosts, nrRounds) shouldEqual 29
       }
     }
+
+    "Part 2" - {
+      import Quest10B.{Coord, NullGhost, readInput, simulate}
+
+      "should calculate the number of rounds until all nullghosts disappear" in {
+        val (nullGhosts: List[NullGhost], caveWalls: Set[Coord]) = readInput(lines)
+        val lifespan: Int = 10
+        simulate(caveWalls, nullGhosts, lifespan) shouldEqual 53
+      }
+    }
   }
 
   "Quest 11" - {
