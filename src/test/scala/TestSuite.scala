@@ -453,6 +453,32 @@ class TestSuite extends AnyFreeSpec, Matchers {
     }
   }
 
+  "Quest 10" - {
+    val lines: List[String] = List(
+      "###########",
+      "#####.#####",
+      "###.....###",
+      "##.......##",
+      "##.>>.<<.##",
+      "#v...>...v#",
+      "##...v...##",
+      "##.......##",
+      "###.....###",
+      "#####.#####",
+      "###########"
+    )
+
+    "Part 1" - {
+      import Quest10A.{Coord, NullGhost, readInput, simulate}
+
+      "should calculate the number of nullghost collisions" in {
+        val (nullGhosts: List[NullGhost], caveWalls: Set[Coord]) = readInput(lines)
+        val nrRounds: Int = 10
+        simulate(caveWalls, nullGhosts, nrRounds) shouldEqual 29
+      }
+    }
+  }
+
   "Quest 11" - {
     "Part 1" - {
       import Quest11A.{Graph, PortalRing, calcPortalResonance}
