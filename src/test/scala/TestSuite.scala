@@ -500,4 +500,23 @@ class TestSuite extends AnyFreeSpec, Matchers {
       }
     }
   }
+
+  "Quest 14" - {
+    "Part 1" - {
+      import Quest14A.{Window, calcBoundingSegmentLength, readInput}
+
+      "should calculate the difference between the circular and shortcut distances" in {
+        val lines: List[String] = List(
+          "AAAEEEFFFF",
+          "AADDDDDGFF",
+          "BACDDIGGFF",
+          "BABBIIIGGH",
+          "BBBBIIIIHH",
+        )
+
+        val window: Window = readInput(lines)
+        calcBoundingSegmentLength(window) shouldEqual 67
+      }
+    }
+  }
 }
