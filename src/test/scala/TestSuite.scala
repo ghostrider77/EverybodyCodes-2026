@@ -505,7 +505,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
     "Part 1" - {
       import Quest14A.{Window, calcBoundingSegmentLength, readInput}
 
-      "should calculate the difference between the circular and shortcut distances" in {
+      "should calculate then number of bindings need to be made to repair the portal" in {
         val lines: List[String] = List(
           "AAAEEEFFFF",
           "AADDDDDGFF",
@@ -516,6 +516,31 @@ class TestSuite extends AnyFreeSpec, Matchers {
 
         val window: Window = readInput(lines)
         calcBoundingSegmentLength(window) shouldEqual 67
+      }
+    }
+  }
+
+  "Quest 19" - {
+    "Part 1" - {
+      import Quest19A.{Color, readInput, mostCommonColorProduct}
+
+      "should calculate the crystal cubes that must be placed on the platform for the first stained-glass window" in {
+        val lines: List[String] = List(
+          "CCCCC",
+          "MMMMM",
+          "YYYYY",
+          "KKKKK",
+          "CCMYY",
+          "",
+          "CMYKC",
+          "CMYKC",
+          "CMYKC",
+          "CMYKC",
+          "CMYKC",
+        )
+
+        val (layer1: List[Color], layer2: List[Color]) = readInput(lines)
+        mostCommonColorProduct(layer1, layer2) shouldEqual 144L
       }
     }
   }
