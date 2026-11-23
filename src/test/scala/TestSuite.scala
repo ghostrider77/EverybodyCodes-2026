@@ -543,5 +543,28 @@ class TestSuite extends AnyFreeSpec, Matchers {
         mostCommonColorProduct(layer1, layer2) shouldEqual 144L
       }
     }
+
+    "Part 2" - {
+      import Quest19B.{Color, readInput, findBestColorAssignment}
+
+      "should calculate the largest possible number of white crystal cubes" in {
+        val lines: List[String] = List(
+          "CCCCC",
+          "MMMMM",
+          "YYYYY",
+          "KKKKK",
+          "CCMYY",
+          "",
+          "14231",
+          "14231",
+          "14231",
+          "14231",
+          "14231",
+        )
+
+        val (layer: List[Color], codes: List[Int]) = readInput(lines)
+        findBestColorAssignment(layer, codes) shouldEqual 180L
+      }
+    }
   }
 }
