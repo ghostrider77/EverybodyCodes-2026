@@ -36,7 +36,7 @@ object Quest10B:
     case West => North
 
   private def move(nullGhost: NullGhost, walls: Set[Coord]): NullGhost = {
-    val NullGhost(position@Coord(x, y), direction, wallCollisions) = nullGhost
+    val NullGhost(position @ Coord(x, y), direction, wallCollisions) = nullGhost
     val nextPosition: Coord = direction match
       case North => Coord(x - 1, y)
       case East => Coord(x, y + 1)
@@ -53,7 +53,7 @@ object Quest10B:
         .filter((_, count) => count >= 2)
     val nextGhosts: List[NullGhost] =
       nullGhosts.map {
-        case nullGhost@NullGhost(coord, direction, collisions) =>
+        case nullGhost @ NullGhost(coord, direction, collisions) =>
           if ghostCollisions.contains(coord) then {
             val newDirection: Direction = changeDirection(changeDirection(direction))
             nullGhost.copy(direction = newDirection, collisions = collisions + 1)

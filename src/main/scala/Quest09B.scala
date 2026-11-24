@@ -9,8 +9,8 @@ object Quest09B:
     def grow(): Plant = {
       def split(branch: Branch): List[Branch] =
         if branch.length < growth then List(branch)
-        else if branch.hasLeaf then List(Branch(growth / 2 , true), Branch(growth / 2, false), Branch(1, true))
-        else List(Branch(growth / 2, false), Branch(growth / 2, false), Branch(1 , true))
+        else if branch.hasLeaf then List(Branch(growth / 2, true), Branch(growth / 2, false), Branch(1, true))
+        else List(Branch(growth / 2, false), Branch(growth / 2, false), Branch(1, true))
 
       val grownBranches: List[Branch] = branches.map(branch => branch.copy(length = branch.length + 1)).flatMap(split)
       this.copy(branches = grownBranches)

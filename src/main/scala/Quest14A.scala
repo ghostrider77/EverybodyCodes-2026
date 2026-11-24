@@ -25,14 +25,14 @@ object Quest14A:
       val Coord(x0, y0) = coord
       val char: Char = pieces(x0)(y0)
       val neighbors: List[Coord] = getValidNeighbors(coord)
-      neighbors.count{ case Coord(x, y) => pieces(x)(y) != char }
+      neighbors.count { case Coord(x, y) => pieces(x)(y) != char }
     }
 
     val externalBoundaries: Int = 2 * (nrRows + nrCols)
     val innerBoundaries: Int =
       (0 until nrRows)
         .flatMap(x => (0 until nrCols).map(y => Coord(x, y)))
-        .foldLeft(0){ case (acc, coord) => acc + getNrDifferentNeighbors(coord) }
+        .foldLeft(0) { case (acc, coord) => acc + getNrDifferentNeighbors(coord) }
 
     externalBoundaries + innerBoundaries / 2
   }

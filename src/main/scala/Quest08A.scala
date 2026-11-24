@@ -22,9 +22,9 @@ object Quest08A:
       .from(1)
       .map(k => Coord(x0 - k, y0 - k))
       .takeWhile(isValid)
-      .map{ case Coord(x, y) => heights(x)(y) }
+      .map { case Coord(x, y) => heights(x)(y) }
       .zipWithIndex
-      .forall { case (h, ix) => height >= h - ix  }
+      .forall { case (h, ix) => height >= h - ix }
   }
 
   def countVisibleCoordinates(grid: Grid): Int = {

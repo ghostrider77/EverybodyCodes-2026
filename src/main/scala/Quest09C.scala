@@ -17,11 +17,11 @@ object Quest09C:
 
     def grow(branch: Branch, step: Long): List[Branch] =
       if branch.length + step < growth then List(branch.copy(length = branch.length + step))
-      else List(Branch(growth / 2 , branch.hasLeaf), Branch(growth / 2, false), Branch(1, true))
+      else List(Branch(growth / 2, branch.hasLeaf), Branch(growth / 2, false), Branch(1, true))
 
     @tailrec
     def loop(seconds: Long, branchCounts: Map[Branch, Long]): Long = {
-      val nrLeaves: Long = branchCounts.iterator.collect{ case (branch, count) if branch.hasLeaf => count }.sum
+      val nrLeaves: Long = branchCounts.iterator.collect { case (branch, count) if branch.hasLeaf => count }.sum
       if nrLeaves >= limit then seconds
       else {
         val longestBranchLength: Long = branchCounts.keysIterator.map(_.length).max
@@ -29,7 +29,7 @@ object Quest09C:
         val updatedCounts: Map[Branch, Long] =
           branchCounts
             .toList
-            .flatMap{ case (branch, count) => grow(branch, stepSize).map((_, count)) }
+            .flatMap { case (branch, count) => grow(branch, stepSize).map((_, count)) }
             .groupMapReduce(_._1)(_._2)(_ + _)
         loop(seconds + stepSize, updatedCounts)
       }

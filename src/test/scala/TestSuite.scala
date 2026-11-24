@@ -511,7 +511,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
           "AADDDDDGFF",
           "BACDDIGGFF",
           "BABBIIIGGH",
-          "BBBBIIIIHH",
+          "BBBBIIIIHH"
         )
 
         val window: Window = readInput(lines)
@@ -536,7 +536,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
           "CMYKC",
           "CMYKC",
           "CMYKC",
-          "CMYKC",
+          "CMYKC"
         )
 
         val (layer1: List[Color], layer2: List[Color]) = readInput(lines)
@@ -559,7 +559,7 @@ class TestSuite extends AnyFreeSpec, Matchers {
           "14231",
           "14231",
           "14231",
-          "14231",
+          "14231"
         )
 
         val (layer: List[Color], codes: List[Int]) = readInput(lines)

@@ -50,7 +50,7 @@ object Quest19B:
   def findBestColorAssignment(colors: List[Color], codes: List[Int]): Long =
     List(Color.Cyan, Color.Magenta, Color.Yellow, Color.Black)
       .permutations
-      .collect{
+      .collect {
         case List(c1, c2, c3, c4) =>
           val mapping: Map[Int, Color] = Map(1 -> c1, 2 -> c2, 3 -> c3, 4 -> c4)
           codes.map(mapping(_))

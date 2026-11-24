@@ -20,7 +20,7 @@ object Quest11A:
 
     lines match
       case hd :: "" :: rest => hd match
-        case s"portals: $portals" => PortalRing(portals.toInt, rest.map(parseShortCut))
+          case s"portals: $portals" => PortalRing(portals.toInt, rest.map(parseShortCut))
       case _ => throw Exception("Malformed input.")
   }
 

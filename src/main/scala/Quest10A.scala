@@ -23,8 +23,8 @@ object Quest10A:
       val cells: List[(Coord, Char)] =
         lines
           .zipWithIndex
-          .flatMap { case (line, x) => line.toList.zipWithIndex.map {case (c, y) => (Coord(x, y), c)} }
-      val walls: Set[Coord] = cells.collect{ case (coord, char) if char == '#' => coord }.toSet
+          .flatMap { case (line, x) => line.toList.zipWithIndex.map { case (c, y) => (Coord(x, y), c) } }
+      val walls: Set[Coord] = cells.collect { case (coord, char) if char == '#' => coord }.toSet
       val nullGhosts: List[NullGhost] =
         cells.collect { case (coord, char) if char != '#' && char != '.' => NullGhost(coord, Direction(char)) }
       (nullGhosts, walls)
@@ -49,8 +49,8 @@ object Quest10A:
   private def nullGhostCollisions(nullGhosts: List[NullGhost]): (List[NullGhost], Int) = {
     val collisions: Map[Coord, Int] =
       nullGhosts
-      .groupMapReduce(_.position)(_ => 1)(_ + _)
-      .filter((_, count) => count >= 2)
+        .groupMapReduce(_.position)(_ => 1)(_ + _)
+        .filter((_, count) => count >= 2)
     val nextGhosts: List[NullGhost] =
       nullGhosts.map {
         case nullGhost @ NullGhost(coord, direction, _) =>
