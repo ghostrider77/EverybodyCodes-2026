@@ -520,6 +520,26 @@ class TestSuite extends AnyFreeSpec, Matchers {
     }
   }
 
+  "Quest 17" - {
+    "Part 1" - {
+      import Quest17A.{LavaMap, readInput, findShortestDistance}
+
+      "should calculate the shortest path to the bottom-right square" in {
+        val lines: List[String] = List(
+          "####.######",
+          "#.#.##..#..",
+          "##.##.##..#",
+          "#.#.###.###",
+          "#.###.###.#",
+          "###.##.#.##"
+        )
+
+        val lavaMap: LavaMap = readInput(lines)
+        findShortestDistance(lavaMap) shouldEqual 21
+      }
+    }
+  }
+
   "Quest 19" - {
     "Part 1" - {
       import Quest19A.{Color, readInput, mostCommonColorProduct}
