@@ -521,21 +521,30 @@ class TestSuite extends AnyFreeSpec, Matchers {
   }
 
   "Quest 17" - {
+    val lines: List[String] = List(
+      "####.######",
+      "#.#.##..#..",
+      "##.##.##..#",
+      "#.#.###.###",
+      "#.###.###.#",
+      "###.##.#.##"
+    )
+
     "Part 1" - {
       import Quest17A.{LavaMap, readInput, findShortestDistance}
 
       "should calculate the shortest path to the bottom-right square" in {
-        val lines: List[String] = List(
-          "####.######",
-          "#.#.##..#..",
-          "##.##.##..#",
-          "#.#.###.###",
-          "#.###.###.#",
-          "###.##.#.##"
-        )
-
         val lavaMap: LavaMap = readInput(lines)
         findShortestDistance(lavaMap) shouldEqual 21
+      }
+    }
+
+    "Part 2" - {
+      import Quest17B.{Cell, readInput, calcLoopLength}
+
+      "should calculate the length of the loop" in {
+        val solidSquares: Set[Cell] = readInput(lines)
+        calcLoopLength(solidSquares) shouldEqual 94
       }
     }
   }

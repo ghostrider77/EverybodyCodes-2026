@@ -37,9 +37,9 @@ object Quest17A:
       if cell == targetNode then dist
       else {
         val neighbours: List[Cell] = getNeighbors(cell, solidSquares)
-        val unvisitedNeighbors: List[Cell] = neighbours.filter(neighbor => !distances.contains(neighbor))
-        unvisitedNeighbors.foreach(neighbor => queue.enqueue(neighbor))
-        loop(distances ++ unvisitedNeighbors.map(n => (n, dist + 1)))
+        val unvisitedNeighbors: List[Cell] = neighbours.filterNot(distances.contains)
+        unvisitedNeighbors.foreach(queue.enqueue)
+        loop(distances ++ unvisitedNeighbors.map(neighbor => (neighbor, dist + 1)))
         }
       }
 
